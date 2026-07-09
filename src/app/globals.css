@@ -23,6 +23,17 @@ body {
     scrollbar-width: none;
   }
 
+  .services-category-scroll {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .services-category-scroll::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
   .btn-gradient {
     background: linear-gradient(90deg, #a78bfa 0%, #ec4899 50%, #f97316 100%);
   }
