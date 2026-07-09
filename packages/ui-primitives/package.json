@@ -1,0 +1,17 @@
+{
+  "name": "@tapat-care/ui-primitives",
+  "version": "0.1.0",
+  "private": true,
+  "peerDependencies": {
+    "lucide-react": "^1.8.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "react-toastify": "^11.1.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  }
+}

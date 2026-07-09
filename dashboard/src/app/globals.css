@@ -1,0 +1,35 @@
+@import "@tapat-care/design-tokens/tokens.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--tapat-color-surface-page);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: var(--tapat-color-surface-page);
+  color: var(--tapat-color-text-strong);
+  font-family: var(--tapat-font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

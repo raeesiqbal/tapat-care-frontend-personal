@@ -1,0 +1,80 @@
+:root {
+  --tapat-font-sans:
+    "Graphik Trial", "Segoe UI", "Helvetica Neue", Arial, ui-sans-serif,
+    system-ui, sans-serif;
+
+  --tapat-color-brand-primary: #a36eff;
+  --tapat-color-brand-primary-hover: #6d28d9;
+  --tapat-color-brand-purple-600: #7c3aed;
+  --tapat-color-brand-purple-700: #6d28d9;
+  --tapat-color-brand-purple-800: #6d28d9;
+  --tapat-color-brand-deep-purple-800: #4c1d95;
+  --tapat-color-brand-deep-purple-900: #3b0764;
+  --tapat-color-brand-pink: #ec4899;
+  --tapat-color-brand-orange: #f97316;
+  --tapat-color-brand-emerald: #10b981;
+  --tapat-color-brand-green: #22c55e;
+
+  --tapat-color-white: #ffffff;
+  --tapat-color-black: #000000;
+  --tapat-color-charcoal-900: #16161a;
+  --tapat-color-gray-50: #f9fafb;
+  --tapat-color-gray-100: #f3f4f9;
+  --tapat-color-gray-100-alt: #f3f4f6;
+  --tapat-color-gray-100-50: rgb(243 244 249 / 50%);
+  --tapat-color-gray-200: #e5e7eb;
+  --tapat-color-gray-300: #d1d5db;
+  --tapat-color-gray-400: #9ca3af;
+  --tapat-color-gray-500: #6b7280;
+  --tapat-color-gray-600: #4b5563;
+  --tapat-color-gray-700: #374151;
+  --tapat-color-gray-800: #1f2937;
+  --tapat-color-gray-900: #111827;
+  --tapat-color-violet-50: #f5f3ff;
+  --tapat-color-violet-100: #ede9fe;
+  --tapat-color-violet-400: #a78bfa;
+  --tapat-color-violet-500-alt: #9f7ae7;
+
+  --tapat-color-text-strong: #111827;
+  --tapat-color-text-muted: #5f6e86;
+  --tapat-color-surface-page: #f8faff;
+  --tapat-color-surface-panel: #ffffff;
+  --tapat-color-border-subtle: #d8deea;
+
+  --tapat-color-dashboard-bg: #f4f6fb;
+  --tapat-color-dashboard-panel: #ffffff;
+  --tapat-color-dashboard-ink: #11213a;
+  --tapat-color-dashboard-muted: #5f6e86;
+  --tapat-color-dashboard-line: #d8deea;
+  --tapat-color-dashboard-accent: #7c3aed;
+  --tapat-color-dashboard-accent-ink: #f5f3ff;
+
+  --tapat-color-status-success: #10b981;
+  --tapat-color-status-warning: #f97316;
+  --tapat-color-status-danger: #dc2626;
+  --tapat-color-status-info: #2563eb;
+
+  --tapat-radius-xs: 4px;
+  --tapat-radius-sm: 6px;
+  --tapat-radius-md: 8px;
+  --tapat-radius-lg: 12px;
+  --tapat-radius-xl: 16px;
+  --tapat-radius-pill: 999px;
+
+  --tapat-shadow-card:
+    0px 1.4px 1.3px 0px rgb(91 91 91 / 15%), 0px 16px 40px 0px rgb(0 0 0 / 2%),
+    0px 8px 8px 0px rgb(78 78 78 / 4%);
+  --tapat-shadow-panel: 0 18px 48px rgb(17 24 39 / 8%);
+  --tapat-shadow-float:
+    0 0 12px rgb(17 24 39 / 8%), 0 0 24px rgb(17 24 39 / 6%),
+    0 0 48px rgb(17 24 39 / 4%);
+
+  /* Backward-compatible dashboard aliases. */
+  --bg: var(--tapat-color-dashboard-bg);
+  --panel: var(--tapat-color-dashboard-panel);
+  --ink: var(--tapat-color-dashboard-ink);
+  --muted: var(--tapat-color-dashboard-muted);
+  --line: var(--tapat-color-dashboard-line);
+  --accent: var(--tapat-color-dashboard-accent);
+  --accent-ink: var(--tapat-color-dashboard-accent-ink);
+}
