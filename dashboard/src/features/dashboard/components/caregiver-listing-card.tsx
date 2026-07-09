@@ -74,9 +74,7 @@ export function CaregiverListingCard({
         triggerRect.left + nextWidth > viewportWidth - viewportPadding &&
         triggerRect.right - nextWidth >= viewportPadding;
 
-      const unclampedLeft = alignRight
-        ? triggerRect.width - nextWidth
-        : 0;
+      const unclampedLeft = alignRight ? triggerRect.width - nextWidth : 0;
       const absoluteLeft = triggerRect.left + unclampedLeft;
       const minLeft = viewportPadding - triggerRect.left;
       const maxLeft =
@@ -213,8 +211,9 @@ export function CaregiverListingCard({
           </div>
         </div>
       </div>
-      <p className="mt-5 max-w-full text-sm leading-6 text-gray-600">
-        {caregiver.summary} <span className="text-gray-400">offers</span>{" "}
+      <div className="mt-5 max-w-full text-sm leading-6  text-gray-600">
+        <p className="line-clamp-2"> {caregiver.summary} </p>{" "}
+        <span className="text-gray-400">offers</span>{" "}
         <span
           data-card-interactive="true"
           className="group/services relative inline-flex max-w-full align-baseline"
@@ -261,7 +260,9 @@ export function CaregiverListingCard({
                 closeServicesPopover();
               }}
               className={`absolute z-20 rounded-xl border border-gray-200 bg-white p-3 shadow-lg ${
-                servicesPlacement.openAbove ? "bottom-full mb-2" : "top-full mt-2"
+                servicesPlacement.openAbove
+                  ? "bottom-full mb-2"
+                  : "top-full mt-2"
               }`}
               style={{
                 width: `${servicesPlacement.width}px`,
@@ -285,7 +286,7 @@ export function CaregiverListingCard({
             </span>
           ) : null}
         </span>
-      </p>
+      </div>
 
       <div className="mt-4 flex flex-wrap gap-2">
         {caregiver.services.slice(0, 7).map((service, index) => (
