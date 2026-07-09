@@ -78,7 +78,11 @@ export function CaregiverListingList({ initialPage }: CaregiverListingListProps)
         next={loadMore}
       >
         {caregivers.map((caregiver) => (
-          <CaregiverListingCard key={caregiver.id} caregiver={caregiver} />
+          <CaregiverListingCard
+            key={caregiver.id}
+            caregiver={caregiver}
+            href={`/dashboard/caregiver/${caregiver.id}`}
+          />
         ))}
       </InfiniteScroll>
 

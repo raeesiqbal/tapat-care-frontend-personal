@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { Info, MapPin, Star } from "lucide-react";
 
 import { DashboardChip } from "@/features/dashboard/components/dashboard-chip";
@@ -9,9 +10,25 @@ import type { CaregiverListing } from "@/features/dashboard/types";
 
 type CaregiverListingCardProps = {
   caregiver: CaregiverListing;
+  href?: string;
 };
 
-export function CaregiverListingCard({ caregiver }: CaregiverListingCardProps) {
+function isInteractiveCardTarget(target: EventTarget | null) {
+  return (
+    target instanceof Element &&
+    Boolean(
+      target.closest(
+        "a,button,input,select,textarea,[role='button'],[data-card-interactive='true']",
+      ),
+    )
+  );
+}
+
+export function CaregiverListingCard({
+  caregiver,
+  href,
+}: CaregiverListingCardProps) {
+  const router = useRouter();
   const servicesTriggerRef = useRef<HTMLSpanElement | null>(null);
   const servicesPopoverRef = useRef<HTMLSpanElement | null>(null);
   const closeTimeoutRef = useRef<number | null>(null);
@@ -111,8 +128,44 @@ export function CaregiverListingCard({ caregiver }: CaregiverListingCardProps) {
     }, 80);
   }
 
+  function navigateToCaregiver() {
+    if (href) {
+      router.push(href);
+    }
+  }
+
+  function handleCardClick(event: React.MouseEvent<HTMLElement>) {
+    if (!href || isInteractiveCardTarget(event.target)) {
+      return;
+    }
+
+    navigateToCaregiver();
+  }
+
+  function handleCardKeyDown(event: React.KeyboardEvent<HTMLElement>) {
+    if (!href || isInteractiveCardTarget(event.target)) {
+      return;
+    }
+
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      navigateToCaregiver();
+    }
+  }
+
   return (
-    <article className="rounded-lg border border-[var(--tapat-color-gray-200)] bg-white p-3 shadow-card transition hover:border-violet-200 sm:p-4 md:p-5 lg:p-6">
+    <article
+      aria-label={href ? `View ${caregiver.name} caregiver profile` : undefined}
+      className={`rounded-lg border border-[var(--tapat-color-gray-200)] bg-white p-3 shadow-card transition hover:border-violet-200 sm:p-4 md:p-5 lg:p-6 ${
+        href
+          ? "cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--tapat-color-brand-purple-700)] focus-visible:ring-offset-2"
+          : ""
+      }`}
+      role={href ? "link" : undefined}
+      tabIndex={href ? 0 : undefined}
+      onClick={handleCardClick}
+      onKeyDown={handleCardKeyDown}
+    >
       <div className="grid gap-4 sm:gap-5 lg:grid-cols-[7.5rem_minmax(0,1fr)] lg:items-start">
         <div className="flex flex-row items-start gap-3 sm:gap-4 lg:flex-col lg:gap-3">
           <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-lg border border-violet-200 bg-violet-50 shadow-sm sm:h-28 sm:w-28">
@@ -163,6 +216,7 @@ export function CaregiverListingCard({ caregiver }: CaregiverListingCardProps) {
       <p className="mt-5 max-w-full text-sm leading-6 text-gray-600">
         {caregiver.summary} <span className="text-gray-400">offers</span>{" "}
         <span
+          data-card-interactive="true"
           className="group/services relative inline-flex max-w-full align-baseline"
           onMouseEnter={openServicesPopover}
           onMouseLeave={closeServicesPopover}

@@ -32,6 +32,29 @@ export type CaregiverListingPage = {
   hasMore: boolean;
 };
 
+export type CaregiverQualificationsDetail = {
+  certifications: string[];
+  transportation: string[];
+  preferences: string[];
+  conditionExperience: string[];
+  equipmentExperience: string[];
+};
+
+export type CaregiverServiceGroup = {
+  category: string;
+  services: string[];
+};
+
+export type CaregiverDetail = {
+  listing: CaregiverListing;
+  bio: string;
+  availability: string[];
+  services: string[];
+  serviceGroups: CaregiverServiceGroup[];
+  languages: string[];
+  qualifications: CaregiverQualificationsDetail;
+};
+
 export type CaregiverScheduleItem = {
   id: string;
   time: string;
