@@ -184,7 +184,7 @@ export function CaregiverListingCard({
   xl:gap-4
   2xl:gap-5 md:grid-cols-[4rem_minmax(0,1fr)] lg:grid-cols-[5rem_minmax(0,1fr)] xl:grid-cols-[6rem_minmax(0,1fr)] 2xl:grid-cols-[7.5rem_minmax(0,1fr)] md:items-start"
       >
-        <div className="flex flex-row items-start gap-3 sm:gap-4 md:flex-col md:gap-2 lg:gap-2.5 xl:gap-3 2xl:gap-3">
+        <div className="flex flex-row items-start gap-3 sm:gap-4 md:flex-col md:gap-3 lg:gap-2.5 xl:gap-3 2xl:gap-3">
           <div
             className="
   relative shrink-0 overflow-hidden rounded-lg border border-violet-200 bg-violet-50 shadow-sm
@@ -219,7 +219,6 @@ export function CaregiverListingCard({
             </div>
           ) : null}
         </div>
-
         <div className="min-w-0">
           <div
             className="grid
