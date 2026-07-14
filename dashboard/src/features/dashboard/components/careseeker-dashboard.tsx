@@ -34,8 +34,9 @@ export function CareseekerDashboard({
               Find a caregiver who fits your family.
             </h1>
             <p className="mt-6 max-w-xl text-base leading-7 text-gray-500">
-              Search verified caregivers near you. Compare experience, languages,
-              services, and availability before starting a conversation.
+              Search verified caregivers near you. Compare experience,
+              languages, services, and availability before starting a
+              conversation.
             </p>
           </div>
 
@@ -45,8 +46,8 @@ export function CareseekerDashboard({
         </div>
       </section>
 
-      <section className="bg-[#f5f2ff]">
-        <div className="mx-auto w-full max-w-[1180px] px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
+      <section className="overflow-visible bg-[#f5f2ff]">
+        <div className="mx-auto w-full max-w-[1180px] overflow-visible px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
           <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-sm font-semibold text-[var(--tapat-color-brand-purple-700)]">
