@@ -51,3 +51,11 @@ export const tapatFonts = {
   sans:
     '"Graphik Trial", "Segoe UI", "Helvetica Neue", Arial, ui-sans-serif, system-ui, sans-serif',
 } as const;
+
+export const tapatTypography = {
+  heading1: "text-heading-1",
+  heading2: "text-heading-2",
+  heading3: "text-heading-3",
+  heading4: "text-heading-4",
+  heading5: "text-heading-5",
+} as const;

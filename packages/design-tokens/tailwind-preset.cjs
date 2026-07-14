@@ -81,6 +81,48 @@ const preset = {
       fontFamily: {
         sans: ["var(--tapat-font-sans)"],
       },
+      fontSize: {
+        "heading-1": [
+          "var(--tapat-font-size-heading-1)",
+          {
+            lineHeight: "var(--tapat-line-height-heading-1)",
+            letterSpacing: "var(--tapat-letter-spacing-heading)",
+            fontWeight: "var(--tapat-font-weight-heading)",
+          },
+        ],
+        "heading-2": [
+          "var(--tapat-font-size-heading-2)",
+          {
+            lineHeight: "var(--tapat-line-height-heading-2)",
+            letterSpacing: "var(--tapat-letter-spacing-heading)",
+            fontWeight: "var(--tapat-font-weight-heading)",
+          },
+        ],
+        "heading-3": [
+          "var(--tapat-font-size-heading-3)",
+          {
+            lineHeight: "var(--tapat-line-height-heading-3)",
+            letterSpacing: "var(--tapat-letter-spacing-heading)",
+            fontWeight: "var(--tapat-font-weight-heading)",
+          },
+        ],
+        "heading-4": [
+          "var(--tapat-font-size-heading-4)",
+          {
+            lineHeight: "var(--tapat-line-height-heading-4)",
+            letterSpacing: "var(--tapat-letter-spacing-heading)",
+            fontWeight: "var(--tapat-font-weight-heading)",
+          },
+        ],
+        "heading-5": [
+          "var(--tapat-font-size-heading-5)",
+          {
+            lineHeight: "var(--tapat-line-height-heading-5)",
+            letterSpacing: "var(--tapat-letter-spacing-heading)",
+            fontWeight: "var(--tapat-font-weight-heading)",
+          },
+        ],
+      },
     },
   },
 };
