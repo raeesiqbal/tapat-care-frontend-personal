@@ -388,7 +388,7 @@ function RateBlock({
       <p className="text-xs font-medium text-gray-500 md:text-[10px] md:leading-4 lg:text-[11px] xl:text-xs 2xl:text-xs">
         from
       </p>
-      <p className="text-2xl font-bold leading-none tracking-normal text-black sm:text-3xl md:text-xl lg:text-2xl xl:text-[1.75rem] 2xl:text-3xl">
+      <p className="text-sm font-bold leading-none tracking-normal text-black md:text-md lg:text-lg xl:text-xl 2xl:text-2xl">
         {rate}
       </p>
       <p className="mt-0.5 text-xs font-medium text-gray-600 md:text-[10px] md:leading-4 lg:text-[11px] xl:text-xs 2xl:text-xs">
