@@ -155,8 +155,8 @@ export function CaregiverListingCard({
     <article
       aria-label={href ? `View ${caregiver.name} caregiver profile` : undefined}
       className={`relative z-0 rounded-lg border border-[var(--tapat-color-gray-200)] bg-white  shadow-card transition hover:border-violet-200 p-3
-  sm:p-4
-  md:p-4
+  sm:p-2
+  md:p-2
   md:transform-gpu
   md:duration-200
   md:ease-out
@@ -164,9 +164,9 @@ export function CaregiverListingCard({
   md:hover:-translate-y-1
   md:hover:scale-[1.01]
   md:hover:shadow-[0_18px_45px_rgba(76,29,149,0.16)]
-  lg:p-[1.125rem]
-  xl:p-5
-  2xl:p-6 ${
+  lg:p-3
+  xl:p-4
+  2xl:p-5 ${
     href
       ? "cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--tapat-color-brand-purple-700)] focus-visible:ring-offset-2"
       : ""
@@ -182,7 +182,7 @@ export function CaregiverListingCard({
   md:gap-3
   lg:gap-3.5
   xl:gap-4
-  2xl:gap-5 md:grid-cols-[4rem_minmax(0,1fr)] lg:grid-cols-[5rem_minmax(0,1fr)] xl:grid-cols-[6rem_minmax(0,1fr)] 2xl:grid-cols-[7.5rem_minmax(0,1fr)] md:items-start"
+  2xl:gap-5 md:grid-cols-[4rem_minmax(0,1fr)] lg:grid-cols-[4.5rem_minmax(0,1fr)] xl:grid-cols-[4.5rem_minmax(0,1fr)] 2xl:grid-cols-[7.5rem_minmax(0,1fr)] md:items-start"
       >
         <div className="flex flex-row items-start gap-3 sm:gap-4 md:flex-col md:gap-3 lg:gap-2.5 xl:gap-3 2xl:gap-3">
           <div
@@ -191,7 +191,7 @@ export function CaregiverListingCard({
   h-24 w-24
   md:h-[60px] md:w-[60px]
   lg:h-[70px] lg:w-[70px]
-  xl:h-[80px] xl:w-[80px]
+  xl:h-[75px] xl:w-[75px]
   2xl:h-24 2xl:w-24
 "
           >
@@ -231,7 +231,7 @@ export function CaregiverListingCard({
   2xl:gap-4"
           >
             <div className="min-w-0">
-              <h2 className="text-lg font-semibold tracking-normal text-gray-950 sm:text-xl md:line-clamp-1 md:text-base lg:text-lg xl:line-clamp-2 xl:text-xl 2xl:line-clamp-none 2xl:text-xl">
+              <h2 className="text-sm font-semibold tracking-normal text-gray-950 sm:text-xl md:line-clamp-1 md:text-base lg:text-lg xl:line-clamp-2 xl:text-xl 2xl:line-clamp-none 2xl:text-xl">
                 {caregiver.name}
               </h2>
               <p className="mt-2 flex items-start gap-1.5 text-sm text-gray-600 md:mt-1 md:gap-1 md:text-[11px] lg:mt-1.5 lg:gap-1.5 lg:text-xs xl:mt-2 xl:text-sm 2xl:mt-2 2xl:text-sm">
@@ -385,16 +385,13 @@ function RateBlock({
     <div
       className={`shrink-0 text-left md:min-w-[3.5rem] md:text-right lg:min-w-[4rem] xl:min-w-[4.5rem] 2xl:min-w-0 ${className}`}
     >
-      <p className="text-xs font-medium text-gray-500 md:text-[10px] md:leading-4 lg:text-[11px] xl:text-xs 2xl:text-xs">
-        from
-      </p>
       <p className="text-sm font-bold leading-none tracking-normal text-black md:text-md lg:text-lg xl:text-xl 2xl:text-2xl">
         {rate}
       </p>
       <p className="mt-0.5 text-xs font-medium text-gray-600 md:text-[10px] md:leading-4 lg:text-[11px] xl:text-xs 2xl:text-xs">
         per hour
       </p>
-      <div className="mt-3 flex items-center gap-1 text-[var(--tapat-color-brand-purple-700)] md:mt-2 md:justify-end lg:mt-2.5 xl:mt-3 2xl:mt-3">
+      <div className="mt-1 flex items-center gap-1 text-[var(--tapat-color-brand-purple-700)] md:mt-1 md:justify-end lg:mt-1 xl:mt-1 2xl:mt-3">
         <Star
           className="h-4 w-4 fill-current md:h-3.5 md:w-3.5 xl:h-4 xl:w-4 2xl:h-4 2xl:w-4"
           aria-hidden
