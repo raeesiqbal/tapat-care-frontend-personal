@@ -182,9 +182,9 @@ export function CaregiverListingCard({
   md:gap-3
   lg:gap-3.5
   xl:gap-4
-  2xl:gap-5 lg:grid-cols-[5rem_minmax(0,1fr)] xl:grid-cols-[6rem_minmax(0,1fr)] 2xl:grid-cols-[7.5rem_minmax(0,1fr)] lg:items-start"
+  2xl:gap-5 md:grid-cols-[4rem_minmax(0,1fr)] lg:grid-cols-[5rem_minmax(0,1fr)] xl:grid-cols-[6rem_minmax(0,1fr)] 2xl:grid-cols-[7.5rem_minmax(0,1fr)] md:items-start"
       >
-        <div className="flex flex-row items-start gap-3 sm:gap-4 md:gap-3 lg:flex-col lg:gap-2.5 xl:gap-3 2xl:gap-3">
+        <div className="flex flex-row items-start gap-3 sm:gap-4 md:flex-col md:gap-2 lg:gap-2.5 xl:gap-3 2xl:gap-3">
           <div
             className="
   relative shrink-0 overflow-hidden rounded-lg border border-violet-200 bg-violet-50 shadow-sm
@@ -205,16 +205,16 @@ export function CaregiverListingCard({
             />
           </div>
           {caregiver.isBackgroundChecked ? (
-            <div className="flex min-w-0 flex-1 flex-wrap items-center gap-2 lg:flex-none">
+            <div className="flex min-w-0 flex-1 flex-wrap items-center gap-2 md:flex-none">
               <DashboardChip
                 label="Background checked"
                 variant="brand"
                 className="
-    text-xs
-    md:px-2 md:py-0.5 md:text-[10px] md:leading-4
-    lg:px-2.5 lg:py-0.5 lg:text-[11px]
-    xl:px-3 xl:py-1 xl:text-xs
-    2xl:px-3 2xl:py-1 2xl:text-xs"
+    max-w-full text-xs
+    md:max-w-none md:whitespace-nowrap md:px-1.5 md:py-0.5 md:text-[9px] md:leading-4
+    lg:px-2 lg:py-0.5 lg:text-[10px]
+    xl:px-2.5 xl:py-1 xl:text-[11px]
+    2xl:max-w-full 2xl:whitespace-nowrap 2xl:px-3 2xl:py-1 2xl:text-xs"
               />
             </div>
           ) : null}
@@ -232,10 +232,10 @@ export function CaregiverListingCard({
   2xl:gap-4"
           >
             <div className="min-w-0">
-              <h2 className="text-lg font-semibold tracking-normal text-gray-950 sm:text-xl md:line-clamp-1 md:text-lg lg:text-[1.1875rem] xl:line-clamp-2 xl:text-xl 2xl:line-clamp-none 2xl:text-xl">
+              <h2 className="text-lg font-semibold tracking-normal text-gray-950 sm:text-xl md:line-clamp-1 md:text-base lg:text-lg xl:line-clamp-2 xl:text-xl 2xl:line-clamp-none 2xl:text-xl">
                 {caregiver.name}
               </h2>
-              <p className="mt-2 flex items-start gap-1.5 text-sm text-gray-600 md:mt-1.5 md:gap-1 md:text-xs lg:gap-1.5 lg:text-[13px] xl:mt-2 xl:text-sm 2xl:mt-2 2xl:text-sm">
+              <p className="mt-2 flex items-start gap-1.5 text-sm text-gray-600 md:mt-1 md:gap-1 md:text-[11px] lg:mt-1.5 lg:gap-1.5 lg:text-xs xl:mt-2 xl:text-sm 2xl:mt-2 2xl:text-sm">
                 <MapPin
                   className="h-4 w-4 shrink-0 text-gray-400 md:h-3.5 md:w-3.5 xl:h-4 xl:w-4 2xl:h-4 2xl:w-4"
                   aria-hidden
@@ -244,7 +244,7 @@ export function CaregiverListingCard({
                   {caregiver.location}
                 </span>
               </p>
-              <p className="mt-2 break-words text-sm font-medium text-gray-700 md:mt-1.5 md:line-clamp-1 md:text-xs lg:line-clamp-2 lg:text-[13px] xl:mt-2 xl:text-sm 2xl:line-clamp-none 2xl:mt-2 2xl:text-sm">
+              <p className="mt-2 break-words text-sm font-medium text-gray-700 md:mt-1 md:line-clamp-1 md:text-[11px] lg:mt-1.5 lg:line-clamp-2 lg:text-xs xl:mt-2 xl:text-sm 2xl:line-clamp-none 2xl:mt-2 2xl:text-sm">
                 {caregiver.experience}
               </p>
             </div>
@@ -383,11 +383,13 @@ function RateBlock({
   className?: string;
 }) {
   return (
-    <div className={`shrink-0 text-left md:text-right ${className}`}>
+    <div
+      className={`shrink-0 text-left md:min-w-[3.5rem] md:text-right lg:min-w-[4rem] xl:min-w-[4.5rem] 2xl:min-w-0 ${className}`}
+    >
       <p className="text-xs font-medium text-gray-500 md:text-[10px] md:leading-4 lg:text-[11px] xl:text-xs 2xl:text-xs">
         from
       </p>
-      <p className="text-2xl font-bold leading-none tracking-normal text-black sm:text-3xl md:text-2xl lg:text-[1.625rem] xl:text-[1.75rem] 2xl:text-3xl">
+      <p className="text-2xl font-bold leading-none tracking-normal text-black sm:text-3xl md:text-xl lg:text-2xl xl:text-[1.75rem] 2xl:text-3xl">
         {rate}
       </p>
       <p className="mt-0.5 text-xs font-medium text-gray-600 md:text-[10px] md:leading-4 lg:text-[11px] xl:text-xs 2xl:text-xs">
