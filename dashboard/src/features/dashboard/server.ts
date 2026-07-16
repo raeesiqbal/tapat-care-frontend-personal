@@ -2,11 +2,24 @@ import "server-only";
 
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import {
+  getPersonalDetailsLanguageLabel,
+  groupSkillsAvailabilityServicesByCategory,
+  normalizeQualificationsExperienceOptions,
+  qualificationsExperienceValuesFromApi,
+  type ExperienceItemOption,
+  type ExperienceSkillLevel,
+  type QualificationsChoiceOption,
+  type QualificationsExperienceBackendData,
+  type SkillsAvailabilityServiceOption,
+} from "@tapat-care/api-contracts";
 
 import { buildPublicAppUrl, buildPublicLoginUrl } from "@/lib/public-app-url";
 import type {
+  CaregiverDetail,
   CaregiverListing,
   CaregiverListingPage,
+  CaregiverQualificationsDetail,
   DashboardRole,
   DashboardUser,
 } from "@/features/dashboard/types";
@@ -54,6 +67,12 @@ type BackendCaregiverListing = {
   services?: unknown;
 };
 
+type BackendCaregiverDetail = BackendCaregiverListing & {
+  availability?: unknown;
+  languages?: unknown;
+  qualifications_experience?: QualificationsExperienceBackendData | null;
+};
+
 type CaregiverListPayload = {
   data?:
     | {
@@ -62,6 +81,10 @@ type CaregiverListPayload = {
         results?: BackendCaregiverListing[];
       }
     | BackendCaregiverListing[];
+};
+
+type CaregiverDetailPayload = {
+  data?: BackendCaregiverDetail;
 };
 
 const API_BASE =
@@ -338,6 +361,139 @@ function normalizeServices(value: unknown) {
     .filter(Boolean);
 }
 
+function normalizeDetailedServiceOptions(value: unknown) {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  const seen = new Set<number | string>();
+
+  return value.reduce<SkillsAvailabilityServiceOption[]>((result, service) => {
+    const record = getRecord(service);
+    const name = getString(record.name);
+    const idValue = record.id;
+    const id =
+      typeof idValue === "number"
+        ? idValue
+        : typeof idValue === "string" && idValue.trim()
+          ? Number(idValue)
+          : null;
+    const dedupeKey = id ?? name;
+
+    if (!name || !dedupeKey || seen.has(dedupeKey)) {
+      return result;
+    }
+
+    seen.add(dedupeKey);
+    return [
+      ...result,
+      {
+        id: typeof id === "number" && Number.isFinite(id) ? id : 0,
+        name,
+        service_category:
+          typeof record.service_category === "number"
+            ? record.service_category
+            : undefined,
+        service_category_name: getString(record.service_category_name),
+      },
+    ];
+  }, []);
+}
+
+function normalizeServiceGroups(value: unknown) {
+  const serviceOptions = normalizeDetailedServiceOptions(value);
+
+  if (serviceOptions.length === 0) {
+    return [];
+  }
+
+  return groupSkillsAvailabilityServicesByCategory(serviceOptions).map(
+    (group) => ({
+      category: group.category,
+      services: group.services.map((service) => service.name),
+    }),
+  );
+}
+
+function normalizeStringArray(value: unknown) {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  const seen = new Set<string>();
+
+  return value.reduce<string[]>((result, item) => {
+    const normalized = String(item ?? "").trim();
+
+    if (!normalized || seen.has(normalized)) {
+      return result;
+    }
+
+    seen.add(normalized);
+    return [...result, normalized];
+  }, []);
+}
+
+function formatAvailabilityTime(value: unknown) {
+  const rawValue = getString(value);
+  const [rawHour, rawMinute] = rawValue.split(":");
+  const hour = Number(rawHour);
+  const minute = Number(rawMinute);
+
+  if (
+    !rawValue ||
+    !Number.isInteger(hour) ||
+    !Number.isInteger(minute) ||
+    hour < 0 ||
+    hour > 23 ||
+    minute < 0 ||
+    minute > 59
+  ) {
+    return rawValue;
+  }
+
+  const period = hour >= 12 ? "PM" : "AM";
+  const displayHour = hour % 12 || 12;
+  const displayMinute = String(minute).padStart(2, "0");
+
+  return `${displayHour}:${displayMinute} ${period}`;
+}
+
+function normalizeAvailability(value: unknown) {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  const seen = new Set<string>();
+
+  return value.reduce<string[]>((result, item) => {
+    if (typeof item === "string") {
+      const normalized = item.trim();
+
+      if (!normalized || seen.has(normalized)) {
+        return result;
+      }
+
+      seen.add(normalized);
+      return [...result, normalized];
+    }
+
+    const record = getRecord(item);
+    const day = getString(record.day);
+    const start = formatAvailabilityTime(record.start);
+    const end = formatAvailabilityTime(record.end);
+    const timeRange = [start, end].filter(Boolean).join(" - ");
+    const normalized = [day, timeRange].filter(Boolean).join(" ");
+
+    if (!normalized || seen.has(normalized)) {
+      return result;
+    }
+
+    seen.add(normalized);
+    return [...result, normalized];
+  }, []);
+}
+
 function formatExperience(yearsExperience: unknown) {
   const years = getFiniteNumber(yearsExperience);
 
@@ -374,6 +530,110 @@ function getImageSrc(picture: unknown) {
   }
 
   return "/assets/images/profile.png";
+}
+
+function getOptionLabel<TValue extends string>(
+  value: string,
+  options: readonly QualificationsChoiceOption<TValue>[],
+) {
+  return options.find((option) => option.value === value)?.label ?? value;
+}
+
+function getExperienceItemName(
+  itemId: number,
+  options: readonly ExperienceItemOption[],
+) {
+  return options.find((option) => option.id === itemId)?.name ?? String(itemId);
+}
+
+function formatQualificationsBoolean(value: string) {
+  if (value === "true") {
+    return "Yes";
+  }
+
+  if (value === "false") {
+    return "No";
+  }
+
+  return "";
+}
+
+function normalizeQualificationExperience(
+  values: Array<{ item_id: number; skill_level: ExperienceSkillLevel }>,
+  itemOptions: readonly ExperienceItemOption[],
+  skillLevelOptions: readonly QualificationsChoiceOption<ExperienceSkillLevel>[],
+) {
+  return values.map(
+    (item) =>
+      `${getExperienceItemName(item.item_id, itemOptions)}: ${getOptionLabel(
+        item.skill_level,
+        skillLevelOptions,
+      )}`,
+  );
+}
+
+function normalizeQualifications(
+  qualifications?: QualificationsExperienceBackendData | null,
+): CaregiverQualificationsDetail {
+  const options = normalizeQualificationsExperienceOptions(qualifications);
+  const values = qualificationsExperienceValuesFromApi(qualifications);
+  const certificationNameById = new Map(
+    options.certifications.map((certification) => [
+      certification.id,
+      certification.name,
+    ]),
+  );
+  const transportation = [
+    values.hasDriversLicense
+      ? `Driver's license: ${formatQualificationsBoolean(
+          values.hasDriversLicense,
+        )}`
+      : "",
+    values.hasCar ? `Car: ${formatQualificationsBoolean(values.hasCar)}` : "",
+    values.hasAutoInsuranceRegistration
+      ? `Insurance/registration: ${formatQualificationsBoolean(
+          values.hasAutoInsuranceRegistration,
+        )}`
+      : "",
+    values.transportationComfort
+      ? `Comfort: ${getOptionLabel(
+          values.transportationComfort,
+          options.transportationComfort,
+        )}`
+      : "",
+  ].filter(Boolean);
+  const petLabels = values.petTypesComfortable.map((petType) =>
+    getOptionLabel(petType, options.petTypes),
+  );
+  const preferences = [
+    values.willingWithPets === "true"
+      ? `Pets: ${petLabels.join(", ") || "Yes"}`
+      : values.willingWithPets
+        ? `Pets: ${formatQualificationsBoolean(values.willingWithPets)}`
+        : "",
+    values.willingWithSmokers
+      ? `Smokers: ${formatQualificationsBoolean(values.willingWithSmokers)}`
+      : "",
+  ].filter(Boolean);
+
+  return {
+    certifications: values.certifications.map(
+      (certificationId) =>
+        certificationNameById.get(certificationId) ?? String(certificationId),
+    ),
+    transportation,
+    preferences,
+    conditionExperience: normalizeQualificationExperience(
+      values.conditionExperience,
+      options.conditionExperienceItems,
+      options.skillLevels,
+    ),
+    equipmentExperience: normalizeQualificationExperience(
+      values.equipmentExperience,
+      options.equipmentExperienceItems,
+      options.skillLevels,
+    ),
+  };
 }
 
 function normalizeCaregiverListing(
@@ -430,6 +690,35 @@ function normalizeCaregiverListPayload(
   };
 }
 
+function normalizeCaregiverDetailPayload(
+  payload: CaregiverDetailPayload,
+): CaregiverDetail {
+  const caregiver = payload.data;
+
+  if (!caregiver) {
+    throw new DashboardBackendError(
+      "Caregiver profile not found.",
+      404,
+      payload,
+    );
+  }
+
+  const listing = normalizeCaregiverListing(caregiver, 0, 0);
+  const bio = getString(caregiver.bio) || listing.summary;
+
+  return {
+    listing,
+    bio,
+    availability: normalizeAvailability(caregiver.availability),
+    services: listing.services,
+    serviceGroups: normalizeServiceGroups(caregiver.services),
+    languages: normalizeStringArray(caregiver.languages).map(
+      getPersonalDetailsLanguageLabel,
+    ),
+    qualifications: normalizeQualifications(caregiver.qualifications_experience),
+  };
+}
+
 export async function getCaregiverListingPage(token: string, offset = 0) {
   const normalizedOffset = Math.max(0, Math.floor(offset));
   const payload = await dashboardBackendRequest<CaregiverListPayload>(
@@ -438,6 +727,16 @@ export async function getCaregiverListingPage(token: string, offset = 0) {
   );
 
   return normalizeCaregiverListPayload(payload, normalizedOffset);
+}
+
+export async function getCaregiverDetail(token: string, id: string) {
+  const caregiverId = encodeURIComponent(id.trim());
+  const payload = await dashboardBackendRequest<CaregiverDetailPayload>(
+    `/api/caregivers/${caregiverId}/`,
+    token,
+  );
+
+  return normalizeCaregiverDetailPayload(payload);
 }
 
 function normalizeUser(payload: CurrentUserPayload): DashboardUser {

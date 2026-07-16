@@ -44,7 +44,7 @@ export default async function SettingsQualificationsExperiencePage() {
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--tapat-color-brand-purple-700)]">
               Care
             </p>
-            <h1 className="mt-2 text-3xl font-semibold tracking-normal text-black sm:text-4xl">
+            <h1 className="mt-2 text-heading-2 text-black">
               Qualifications
             </h1>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-gray-600 sm:text-base">

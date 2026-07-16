@@ -293,7 +293,7 @@ export function SkillsAvailabilityForm({ previousPath, nextPath }: Props) {
       <OnboardingFormFrame>
         {/* SERVICES */}
         <div>
-          <h2 className="text-[18px] font-semibold text-gray-950">
+          <h2 className="text-heading-5 text-gray-950">
             Services you offer
           </h2>
         </div>
@@ -366,7 +366,7 @@ export function SkillsAvailabilityForm({ previousPath, nextPath }: Props) {
         </div>
         {/* AVAILABILITY */}
         <div className="mt-10">
-          <h2 className="text-[18px] font-semibold text-gray-950">
+          <h2 className="text-heading-5 text-gray-950">
             Availability
           </h2>
         </div>
@@ -388,7 +388,7 @@ export function SkillsAvailabilityForm({ previousPath, nextPath }: Props) {
         </InfoCallout>
         {/* INTRO */}
         <div className="mt-10">
-          <h2 className="text-[18px] font-semibold text-gray-950">
+          <h2 className="text-heading-5 text-gray-950">
             A short intro clients will see
           </h2>
           <textarea

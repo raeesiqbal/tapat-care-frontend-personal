@@ -163,7 +163,7 @@ export function ProfilePhotoCard({ user }: ProfilePhotoCardProps) {
         </div>
 
         <div className="min-w-[220px] flex-1">
-          <p className="truncate text-2xl font-semibold tracking-normal text-gray-950">
+          <p className="truncate text-heading-4 text-gray-950">
             {user.fullName}
           </p>
           <p className="mt-2 truncate text-sm text-gray-600">{user.email}</p>

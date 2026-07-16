@@ -67,7 +67,7 @@ export function CaregiverListingList({ initialPage }: CaregiverListingListProps)
   return (
     <>
       <InfiniteScroll
-        className="grid gap-5 overflow-visible"
+        className="relative grid gap-5 overflow-visible md:gap-3.5 lg:gap-4 xl:gap-4 2xl:gap-5"
         dataLength={caregivers.length}
         hasMore={hasMore}
         loader={
@@ -76,9 +76,14 @@ export function CaregiverListingList({ initialPage }: CaregiverListingListProps)
           </p>
         }
         next={loadMore}
+        style={{ overflow: "visible" }}
       >
         {caregivers.map((caregiver) => (
-          <CaregiverListingCard key={caregiver.id} caregiver={caregiver} />
+          <CaregiverListingCard
+            key={caregiver.id}
+            caregiver={caregiver}
+            href={`/dashboard/caregiver/${caregiver.id}`}
+          />
         ))}
       </InfiniteScroll>
 
