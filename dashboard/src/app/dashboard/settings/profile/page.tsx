@@ -31,7 +31,7 @@ export default async function SettingsProfilePage() {
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--tapat-color-brand-purple-700)]">
                 Account
               </p>
-              <h1 className="mt-2 text-3xl font-semibold tracking-normal text-black sm:text-4xl">
+              <h1 className="mt-2 text-heading-2 text-black">
                 Profile
               </h1>
               <p className="mt-3 max-w-2xl text-sm leading-6 text-gray-600 sm:text-base">
@@ -50,7 +50,7 @@ export default async function SettingsProfilePage() {
                   />
                 ) : (
                   <section className="rounded-lg border border-[var(--tapat-color-gray-200)] bg-white p-5 shadow-[var(--tapat-shadow-card)] sm:p-6">
-                    <h2 className="text-lg font-semibold tracking-normal text-gray-950">
+                    <h2 className="text-heading-5 text-gray-950">
                       My information
                     </h2>
                     <p className="mt-3 max-w-2xl text-sm leading-6 text-gray-600">

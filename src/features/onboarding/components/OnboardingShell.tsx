@@ -65,7 +65,7 @@ export function OnboardingShell({
           <p className="mb-3 text-[12px] font-semibold text-primary">
             {step.eyebrow}
           </p>
-          <h1 className="text-[24px] font-semibold leading-[1.1] tracking-normal text-gray-950">
+          <h1 className="text-heading-2 text-gray-950">
             {step.title}
           </h1>
           <p className="mt-4 max-w-[570px] text-[17px] leading-7 text-gray-600">

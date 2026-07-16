@@ -166,7 +166,7 @@ function StatusPanel({
   return (
     <div className={`rounded-[8px] border p-5 ${content.toneClassName}`}>
       <p className="text-xs font-semibold uppercase text-gray-700">{label}</p>
-      <p className="mt-2 text-[18px] font-semibold text-gray-950">
+      <p className="mt-2 text-heading-5 text-gray-950">
         {content.valueLabel}
       </p>
       <h3 className="mt-4 text-[17px] font-semibold text-gray-950">
@@ -258,7 +258,7 @@ function CareseekerAccountStatus({ accountStatus }: { accountStatus: string }) {
         <span className="block text-xs font-semibold uppercase text-primary">
           Current account status
         </span>
-        <span className="mt-2 block text-[22px] font-semibold text-gray-950">
+        <span className="mt-2 block text-heading-4 text-gray-950">
           {statusLabel}
         </span>
       </InfoCallout>
@@ -291,7 +291,7 @@ export async function ScreeningStatusPage() {
         <p className="text-xs font-semibold uppercase text-primary">
           Current review state
         </p>
-        <h2 className="mt-2 text-[22px] font-semibold text-gray-950">
+        <h2 className="mt-2 text-heading-4 text-gray-950">
           {accountContent.title}
         </h2>
         <p className="mt-3 max-w-[680px] text-[15px] leading-6 text-gray-700">

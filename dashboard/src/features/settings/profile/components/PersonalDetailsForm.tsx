@@ -112,7 +112,7 @@ function FormSection({
   return (
     <section className={className}>
       <div className="max-w-[680px]">
-        <h2 className="text-[18px] font-semibold text-gray-950">{title}</h2>
+        <h2 className="text-heading-5 text-gray-950">{title}</h2>
         {description ? (
           <p className="mt-2 text-sm leading-6 text-gray-600">{description}</p>
         ) : null}
@@ -151,7 +151,7 @@ function PersonalDetailsReadOnly({
   return (
     <section className="rounded-[20px] border border-gray-100 bg-white shadow-card">
       <div className="flex items-center justify-between border-b border-gray-100 px-6 py-5 sm:px-8">
-        <h2 className="text-[18px] font-semibold text-gray-950">
+        <h2 className="text-heading-5 text-gray-950">
           Personal details
         </h2>
         {canEdit ? (

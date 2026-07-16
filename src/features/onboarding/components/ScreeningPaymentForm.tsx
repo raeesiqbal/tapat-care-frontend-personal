@@ -176,7 +176,7 @@ export function ScreeningPaymentForm({ previousPath }: Props) {
       <OnboardingFormFrame>
         <section className="flex flex-col gap-6">
           <div className="rounded-2xl border border-gray-200 bg-white p-6">
-            <h2 className="text-[18px] font-semibold text-gray-950">
+            <h2 className="text-heading-5 text-gray-950">
               Why a safety screening?
             </h2>
             <ul className="mt-4 space-y-3 text-[15px] leading-6 text-gray-700">
@@ -197,7 +197,7 @@ export function ScreeningPaymentForm({ previousPath }: Props) {
 
           <div className="rounded-2xl border border-gray-200 bg-white p-6">
             <div className="flex items-baseline justify-between">
-              <h2 className="text-[18px] font-semibold text-gray-950">
+              <h2 className="text-heading-5 text-gray-950">
                 Background screening fee
               </h2>
               <p className="text-[20px] font-semibold text-gray-950">

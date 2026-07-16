@@ -409,7 +409,7 @@ export function ServicesSettingsForm({
       <div className="w-full rounded-[20px] border border-gray-100 bg-white p-6 shadow-card sm:p-8 lg:p-10">
         <section>
           <div className="max-w-[680px]">
-            <h2 className="text-[18px] font-semibold text-gray-950">
+            <h2 className="text-heading-5 text-gray-950">
               Services you offer
             </h2>
           </div>
@@ -489,7 +489,7 @@ export function ServicesSettingsForm({
 
         <section className="mt-10 border-t border-gray-100 pt-10">
           <div className="max-w-[680px]">
-            <h2 className="text-[18px] font-semibold text-gray-950">
+            <h2 className="text-heading-5 text-gray-950">
               Availability
             </h2>
           </div>
@@ -514,7 +514,7 @@ export function ServicesSettingsForm({
 
         <section className="mt-10 border-t border-gray-100 pt-10">
           <div className="max-w-[680px]">
-            <h2 className="text-[18px] font-semibold text-gray-950">
+            <h2 className="text-heading-5 text-gray-950">
               A short intro clients will see
             </h2>
             <textarea

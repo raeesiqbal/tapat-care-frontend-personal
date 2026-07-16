@@ -61,7 +61,7 @@ export function CaregiverDashboard({ user }: CaregiverDashboardProps) {
           </p>
           <div className="mt-6 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div>
-              <h1 className="text-4xl font-semibold leading-tight tracking-normal text-black sm:text-5xl">
+              <h1 className="text-heading-1 text-black">
                 Your care dashboard
               </h1>
               <p className="mt-4 max-w-2xl text-base leading-7 text-gray-500">
@@ -93,7 +93,7 @@ export function CaregiverDashboard({ user }: CaregiverDashboardProps) {
                     <p className="text-sm font-medium uppercase text-gray-500">
                       {stat.label}
                     </p>
-                    <p className="mt-2 text-3xl font-semibold tracking-normal text-black">
+                    <p className="mt-2 text-heading-3 text-black">
                       {stat.value}
                     </p>
                   </div>
@@ -178,7 +178,7 @@ function AvailabilityPanel() {
       <p className="text-sm font-semibold uppercase text-[var(--tapat-color-brand-purple-700)]">
         Availability
       </p>
-      <h2 className="mt-3 text-2xl font-semibold tracking-normal text-black">
+      <h2 className="mt-3 text-heading-3 text-black">
         Two open windows this week
       </h2>
       <p className="mt-3 text-sm leading-6 text-gray-600">
@@ -235,7 +235,7 @@ function ReviewCard({ review }: { review: CaregiverReview }) {
 function PanelHeader({ title, action }: { title: string; action: string }) {
   return (
     <div className="flex items-center justify-between gap-4">
-      <h2 className="text-lg font-semibold tracking-normal text-black">{title}</h2>
+      <h2 className="text-heading-5 text-black">{title}</h2>
       <button
         type="button"
         className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--tapat-color-brand-purple-700)] transition hover:text-[var(--tapat-color-brand-deep-purple-800)]"

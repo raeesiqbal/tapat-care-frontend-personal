@@ -23,7 +23,7 @@ export function ReviewSection({
       className={`rounded-[20px] border border-gray-100 bg-white shadow-card ${className}`}
     >
       <div className="flex items-center justify-between border-b border-gray-100 px-6 py-5 sm:px-8">
-        <h2 className="text-[18px] font-semibold text-gray-950">{title}</h2>
+        <h2 className="text-heading-5 text-gray-950">{title}</h2>
         {action}
       </div>
       <div className="px-6 sm:px-8">

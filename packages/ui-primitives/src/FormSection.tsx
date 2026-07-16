@@ -16,7 +16,7 @@ export function FormSection({
   return (
     <section className={className}>
       <div className="max-w-[680px]">
-        <h2 className="text-[18px] font-semibold text-gray-950">{title}</h2>
+        <h2 className="text-heading-5 text-gray-950">{title}</h2>
         {description ? (
           <p className="mt-2 text-sm leading-6 text-gray-600">{description}</p>
         ) : null}
